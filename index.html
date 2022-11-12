@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="/CSS/style.css"> -->
+
+    <title>Dummy Blog</title>
+    
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .drafting, .deleter{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #newBlogPost {
+            height: 150px;
+        }
+        #posts {
+            height: auto;
+            width: 100%;
+        }
+    </style>
+
+
+  </head>
+
+
+  <body>
+    <header class="shadow">
+        <h1 class="bg-light text-center">Meagan's Blog</h1>
+
+    </header>
+    <main class="shadow text-center p-3 drafting m-3">
+        <h2 class="fs-6">Write a new blog post:</h2>
+        <form action="">
+            <textarea class="w-75 p-1" type="text" id="newBlogPost" name="blogPost"></textarea>
+            <br>
+            <input class="m-3" type="button" value="Post It" onclick='postIt()'>
+        </form>
+    </main>
+    <div class="w-100 text-center p-1 m-2">
+        <h3 class="shadow p-2">Blog Posts:</h3>
+        <ul id="posts" class="mb-5 list-unstyled">
+            <li class="border border-bottom-0 border-top-0 border-secondary rounded shadow m-2">Finally, she gave the user the option to delete any blog post that she would like. The first post is the top-most, or newest, post on the page.</li>
+            <li class="border border-bottom-0 border-top-0 border-secondary rounded shadow m-2">Next, she created a function allowing you to add more posts to the blog. She made sure to allow newer posts to be seen at the top.</li>
+            <li class="border border-bottom-0 border-top-0 border-secondary rounded shadow m-2">She started by creating four fake blog posts in order to create the format for the blog.</li>
+            <li class="border border-bottom-0 border-top-0 border-secondary rounded shadow m-2">Once upon a time there was a computer science student named Meagan who created a dummy blog.</li>
+        </ul>
+    </div>
+    <div class="deleter text-center">
+        <form action="">
+            <h2 class="fs-6 text-center">Delete a Post?</h2>
+            <input type="number" id="indexToDelete">
+            <input type="button" value="Delete It" onclick='deleteIt()'>
+    </div>
+
+    <script>
+
+        var blogList = document.getElementById("posts");
+        function postIt(){
+            const textarea = document.getElementById("newBlogPost");
+            newPost = document.getElementById("newBlogPost").value;
+            var newEntry = document.createElement("li");
+            newEntry.className = "border border-bottom-0 border-top-0 border-secondary rounded shadow m-2";
+            newEntry.innerHTML = newPost;
+            blogList.insertBefore(newEntry, blogList.children[0]);
+            textarea.value = "";
+        }
+
+        function deleteIt (){
+            const inputBox = document.getElementById("indexToDelete");
+            var postNo = document.getElementById("indexToDelete").value;
+            var postToDelete = document.querySelectorAll("li")[(postNo-1)];
+            var deletedPost = blogList.removeChild(postToDelete);
+            inputBox.value = "";
+        }
+
+
+    </script>
+  </body>
+</html>
